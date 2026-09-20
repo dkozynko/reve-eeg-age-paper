@@ -1,0 +1,80 @@
+\section{Protocol and Reproduction Details}
+\label{sec:audit}
+
+\subsection{Study record}
+Before the primary MIPDB evaluation, a study lock recorded the encoder,
+preprocessing, statistical specification, HBN manifests, external cohort,
+training environment, and all 40 selected checkpoints. Evaluation recorded its
+start before extracting features for primary participants. Existing valid
+predictions could not be overwritten, and resumed runs had to use the same
+inputs. Analysis required exactly one prediction for each head, seed, and
+participant: 3,000 predictions in total.
+
+The compact evidence records the primary analysis hash
+\texttt{\SourceAnalysisHash} and prediction-inventory hash
+\texttt{\PredictionInventoryHash}. These identify the retained result and its
+source inventory. They do not replace access to the inventory or provide an
+independent public timestamp for the protocol.
+
+The source analyses, figures, and tables are linked by file manifests. Numeric
+commands in the manuscript are generated from aggregate results. The editorial
+presentation assets use the same retained values with shorter labels; their
+manifest records their source files separately. Rebuilding those assets does
+not rerun participant-level inference.
+
+\subsection{Interpretation of the decision rule}
+The five primary conditions serve different purposes. The minimum cohort size
+sets a floor on the evaluation sample. Holm correction addresses the three
+seed-level tests, while the bootstrap lower bound requires a positive estimate
+when seeds and participants are resampled. The win count and worst-seed floor
+limit dependence on favorable training runs. No candidate passed the bootstrap
+condition. The multi-query head lost on two seeds, but still met the eight-win
+and worst-seed thresholds. Passing those thresholds did not compensate for an
+interval containing zero.
+
+\subsection{Earlier and later analyses}
+Previously inspected HBN R5 screens motivated candidate families but are
+retrospective evidence. NeuralBench-compatible end-to-end runs update the
+encoder and provide implementation context, not frozen-probe scores. Neither
+is part of the primary MIPDB effect estimate.
+
+The training-size and layer-wise follow-ups reuse the MIPDB cohort after its
+first evaluation. Their separate protocol records preserve what was run but
+cannot make those participants an untouched holdout again. The ds006780
+transfer adds a separate cohort and uses the configuration recorded in
+\texttt{configs/research/ds006780\_external\_transfer.json}. Its configuration
+hash matches the v5 aggregate execution record, including dataset version
+1.0.0 and the pinned source revision. It remains secondary because the
+comparison was motivated by earlier findings.
+
+\subsection{Additional primary and layer-wise figures}
+Figure~\ref{fig:calibration} summarizes calibration. Figures~\ref{fig:layerwise-depth}
+and \ref{fig:layerwise-seed-deltas} show the exploratory depth comparison.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.80\linewidth]{generated/calibration_summary.pdf}
+  \caption{Mean MIPDB calibration slopes and intercepts across seeds. Dashed
+  lines mark one and zero, respectively. Calibration regresses observed age on
+  predicted age; no external recalibration was applied.}
+  \label{fig:calibration}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.80\linewidth]{../results/extensions/layerwise_probe_20260910/assets/layerwise_depth.pdf}
+  \caption{Exploratory layer-wise differences from the final layer, with joint
+  seed-and-participant intervals. All intervals include zero.}
+  \label{fig:layerwise-depth}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.80\linewidth]{../results/extensions/layerwise_probe_20260910/assets/layerwise_seed_deltas.pdf}
+  \caption{Paired layer-wise Pearson differences across seeds on the same
+  MIPDB participants.}
+  \label{fig:layerwise-seed-deltas}
+\end{figure}
+
+\clearpage
+\input{sections/capacity_data_regime}

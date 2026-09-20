@@ -1,0 +1,36 @@
+\section{Introduction}
+
+EEG foundation models aim to provide features that can be reused across
+recording systems, electrode layouts, and prediction tasks. REVE addresses
+this goal through large-scale pretraining and position encodings that support
+different electrode arrangements \citep{elouahidi2025reve}. Evaluating a frozen
+encoder, however, also requires choosing a prediction head. A linear head tests
+whether the target can be recovered by a simple readout; a more expressive head
+may exploit additional structure in the features, but its gains may depend on
+the training data.
+
+Age prediction offers a useful test. Age-related changes are reflected in EEG,
+and previous work has used them to study maturation and aging
+\citep{sun2019brainage,vandenbosch2019age}. Yet a model trained on one cohort may
+perform differently on another because participants, hardware, and recording
+procedures change. Repeating training with several random seeds measures one
+source of variability, while all runs may still be evaluated on the same small
+group of people.
+
+We ask whether richer heads improve external age prediction when the REVE
+encoder, development data, preprocessing, training budget, and checkpoint
+selection rule are held fixed. We compare a mean-pooled linear baseline with a
+linear probe of the preceding layer and two richer final-layer heads. All heads
+are developed on the Healthy Brain Network (HBN) and evaluated on a held-out
+MIPDB cohort using a decision rule specified before external evaluation.
+
+Three secondary analyses examine training-set size, representation depth, and
+transfer to a separate cohort, OpenNeuro ds006780. The first two reuse MIPDB;
+the third adds new participants but was motivated by the earlier results.
+
+The contribution is a controlled empirical study of frozen EEG features. We
+show how the preferred head changes with the metric, how a candidate's
+advantage can change with training-set size, and why agreement across seeds
+can coexist with substantial uncertainty across participants. These findings
+help interpret probe comparisons without attributing every downstream gain
+to the encoder itself.

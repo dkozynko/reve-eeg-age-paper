@@ -1,0 +1,108 @@
+\section{Results}
+
+\subsection{Primary external performance}
+The primary evaluation included \ProbeRuns{} selected checkpoints and
+\ExternalPredictions{} predictions for \PrimarySubjects{} MIPDB participants.
+The baseline achieved mean Pearson correlation \BaselinePearson{}, MAE
+\BaselineMAE{} years, and RMSE \BaselineRMSE{} years
+(Table~\ref{tab:absolute-metrics}). The rich-statistics head had the highest
+mean correlation, while the multi-query head had the lowest MAE and RMSE.
+All four heads had negative $R^2$ and calibration slopes above one, indicating
+substantial absolute error despite positive correlations.
+
+\begin{table}[tbp]
+  \centering
+  \small
+  \caption{Mean MIPDB metrics across ten training seeds. MAE and RMSE are in
+  years. Calibration fits observed age against predicted age.}
+  \label{tab:absolute-metrics}
+  \input{generated/main_metrics}
+\end{table}
+
+\subsection{Paired primary comparisons}
+Mean Pearson differences from the matched baseline were
+\LayerLinearPearsonDelta{} for the penultimate-layer linear probe,
+\RichResidualPearsonDelta{} for the rich-statistics head, and
+\MultiQueryPearsonDelta{} for the multi-query head. All three Holm-adjusted
+sign-flip p-values were below 0.05. However, every joint bootstrap interval
+included zero (Table~\ref{tab:confirmatory} and Figure~\ref{fig:bootstrap}), so
+none met all conditions of the prespecified decision rule.
+
+\begin{table}[tbp]
+  \centering
+  \small
+  \caption{Primary paired differences from the final-layer linear baseline.
+  Intervals resample seeds and participants. W/T/L counts positive, zero, and
+  negative seed differences; Stable denotes passing all five decision criteria.}
+  \label{tab:confirmatory}
+  \input{generated/confirmatory_comparisons}
+\end{table}
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.82\linewidth]{generated/bootstrap_intervals.pdf}
+  \caption{Mean primary Pearson differences and joint 95\% confidence intervals.
+  Every interval includes the no-difference line.}
+  \label{fig:bootstrap}
+\end{figure}
+
+The penultimate-layer and rich-statistics heads improved on every seed. The
+multi-query head improved on eight seeds and lost on \MultiQueryLosses{}.
+Figure~\ref{fig:seed-deltas} shows these differences. The consistent signs in
+the first two comparisons describe training variability on this cohort;
+they do not remove uncertainty across participants.
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.86\linewidth]{generated/seed_deltas.pdf}
+  \caption{Primary paired Pearson differences by training seed, all evaluated
+  on the same 75 participants. Positive values favor the candidate.}
+  \label{fig:seed-deltas}
+\end{figure}
+
+\subsection{Exploratory training-size analysis}
+The 90 runs at 200, 400, and 800 HBN training subjects produced 6,750 predictions
+for the same 75 MIPDB participants. Both the rich-statistics and matched MLP
+heads had positive mean advantages at every size, with all ten seed differences
+positive in each comparison (Figure~\ref{fig:capacity-main}). Their mean
+advantages decreased across the tested sizes. The 200-subject intervals were
+above zero, while the 800-subject intervals included zero.
+
+Comparing those interval decisions alone does not test whether the effects
+changed. Direct 800-minus-200 contrasts were $-0.046$ for the rich head
+(95\% CI $[-0.112,0.023]$) and $-0.039$ for the MLP
+($[-0.090,0.012]$). Both included zero. One adjacent MLP contrast, 800 minus
+400, had an interval below zero ($[-0.061,-0.004]$); its one-sided test of a
+positive change gave an adjusted p-value of 1.000. These exploratory results
+are reported in full in Appendix~\ref{sec:capacity}; they do not establish a
+universal scaling law.
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.86\linewidth]{presentation/capacity_data_regime_delta.pdf}
+  \caption{Exploratory training-size analysis. Mean paired Pearson differences
+  from the size-matched linear baseline, with joint 95\% intervals.}
+  \label{fig:capacity-main}
+\end{figure}
+
+\subsection{Exploratory layer-wise analysis}
+Four linear probes were evaluated across ten seeds on the same
+\LayerwiseSubjectCount{} MIPDB participants. Relative to the final-layer
+mean-linear baseline, the mean differences were \LayerwiseMFourDelta{},
+\LayerwiseMThreeDelta{}, and \LayerwiseMTwoDelta{} at layers $-4$, $-3$, and
+$-2$, respectively. All intervals crossed zero (Table~\ref{tab:layerwise}).
+The positive estimates do not establish a stable layer advantage or a primary
+superiority claim. Figures~\ref{fig:layerwise-depth} and
+\ref{fig:layerwise-seed-deltas} in the appendix show the depth and seed patterns.
+
+\begin{table}[tbp]
+  \centering
+  \small
+  \caption{Exploratory layer-wise differences from the final-layer baseline.
+  Intervals resample seeds and participants; Holm-adjusted p-values refer to
+  seed sign-flip tests.}
+  \label{tab:layerwise}
+  \input{../results/extensions/layerwise_probe_20260910/assets/layerwise_summary}
+\end{table}
+
+\input{sections/ds006780_external}

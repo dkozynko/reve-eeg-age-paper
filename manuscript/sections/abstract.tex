@@ -1,0 +1,19 @@
+Do more expressive prediction heads improve age prediction from frozen EEG
+representations? We compared four heads using a fixed \REVE{} encoder, the same
+Healthy Brain Network development split, and \ProbeSeeds{} training seeds. The
+primary external evaluation included \PrimarySubjects{} MIPDB participants.
+The mean-pooled linear baseline achieved a mean Pearson correlation of
+\BaselinePearson{}. The three alternatives increased correlation by
+\LayerLinearPearsonDelta{}--\RichResidualPearsonDelta{} on average, but all
+95\% confidence intervals included zero when both seeds and participants were
+resampled. None met our prespecified criterion for a reliable improvement.
+The head with the highest correlation differed from the head with the lowest
+prediction error. Exploratory analyses varied training-set size and
+representation layer on the same MIPDB participants. A separate evaluation on
+\DsSubjectCount{} participants from OpenNeuro ds006780 also found a positive
+mean difference at 800 training subjects, but its interval included zero.
+These results illustrate why repeated training runs alone cannot assess
+uncertainty in external performance. Comparisons of frozen EEG representations
+should report the prediction head, training-set size, evaluation metric, and
+uncertainty across participants. This study does not establish equivalence
+between heads; its findings apply to the tested REVE setup.

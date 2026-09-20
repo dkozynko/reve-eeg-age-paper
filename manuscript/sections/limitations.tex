@@ -1,0 +1,38 @@
+\section{Limitations}
+
+The primary external cohort contains 75 participants. Differences between HBN
+and MIPDB in recruitment, age distribution, hardware, and recording procedures
+are combined in the observed transfer performance; this design cannot identify
+a single source of error. The minimum sample-size threshold did not guarantee
+precise estimates. Intervals that include zero leave room for both useful gains
+and worse performance, and no equivalence margin was specified.
+
+The main comparison covers one REVE checkpoint, four heads, and ten seeds under
+common training settings. Equal budgets do not guarantee that each head was
+optimally tuned. The training-size analysis covers three nested subsets, and
+the layer-wise analysis covers four depths with separately fitted linear heads.
+Both reuse MIPDB after the primary evaluation. These results do not establish a
+scaling law or a general ranking of encoders, layers, or heads.
+
+The ds006780 extension uses a separate cohort but was motivated by earlier
+results. Its reference was undocumented and its electrode positions were
+approximated by a canonical BioSemi montage. The source dataset includes a
+sibling group. Family links were not retained in the aggregate evidence, so we
+could not establish whether related participants entered the selected sample.
+The bootstrap treats participants as independent; any unaccounted family
+clustering could make its intervals too narrow. A family-aware sensitivity
+analysis would require the original cohort metadata.
+
+The HBN source manifest records age and split membership but not sex or
+diagnostic group, limiting the assessment of sampling imbalance. We recovered
+the selected ds006780 sample description from public metadata and verified its
+participant and age hashes. These checks do not recover the original prediction
+vectors or execution caches. Independent recalculation of participant-level
+metrics requires those artifacts or a rerun using the original data.
+
+MIPDB participants outside the HBN training-age range were excluded from the
+primary analysis. REVE's published pretraining inventory includes HBN releases,
+so HBN is not an encoder-unseen evaluation. Although the inventory does not name
+MIPDB, we could not independently verify complete absence of pretraining overlap.
+We make no encoder-unseen claim for ds006780 either. Finally, predicting
+chronological age does not validate a clinical brain-age biomarker.

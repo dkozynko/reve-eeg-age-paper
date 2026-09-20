@@ -1,0 +1,61 @@
+\ifdefined\pdfinfoomitdate\pdfinfoomitdate=1\fi
+\ifdefined\pdftrailerid\pdftrailerid{}\fi
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{flafter}
+\usepackage{array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.7}
+
+\title{Do More Expressive Probes Improve EEG Age Prediction?\\
+A Cross-Cohort Study with Frozen REVE}
+\author{Dmytro Kozynko\\
+\small Independent Researcher\\
+\small\href{mailto:dmytro.kozynko@gmail.com}{\texttt{dmytro.kozynko@gmail.com}}}
+\date{}
+\hypersetup{
+  pdftitle={Do More Expressive Probes Improve EEG Age Prediction? A Cross-Cohort Study with Frozen REVE},
+  pdfauthor={Dmytro Kozynko},
+  pdfsubject={Frozen EEG representation probing},
+  pdfkeywords={EEG, foundation models, representation probing, age prediction}
+}
+\input{macros}
+\input{generated/results_macros}
+\input{presentation/head_parameters}
+\input{../results/extensions/layerwise_probe_20260910/assets/layerwise_results_macros}
+\input{../results/extensions/ds006780_external_v5/ds006780_results_macros}
+\begin{document}
+\maketitle
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/datasets}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/limitations}
+\input{sections/conclusion}
+\input{sections/reproducibility}
+\begingroup
+\small
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\endgroup
+\clearpage
+\appendix
+\input{sections/supplementary}
+\end{document}

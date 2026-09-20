@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neurobench-age"
+version = "0.1.0"
+description = "REVE age probing experiments and evidence tools"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "numpy>=1.23",
+  "jsonschema>=4.23",
+  "rfc8785>=0.1.4",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8",
+  "PyYAML>=6",
+  "scipy>=1.10",
+  "torch>=2.0",
+  "lightning>=2.0",
+]
+pipeline = [
+  "torch>=2.0",
+  "lightning>=2.0",
+  "scipy>=1.10",
+]
+reve = [
+  "neuralbench==0.2.3",
+  "safetensors==0.5.3",
+  "huggingface_hub>=0.24",
+]
+external = [
+  "mne>=1.8",
+  "mne-bids>=0.16",
+  "openneuro-py>=2026.7.1,<2027",
+]
+manuscript = [
+  "matplotlib>=3.11,<4",
+]
+
+[project.scripts]
+neurobench-baseline = "neurobench_age.core.baseline:main"
+neurobench-independent = "neurobench_age.pipelines.independent:main"
+neurobench-manifest = "neurobench_age.data.screening_manifest:main"
+neurobench-download = "neurobench_age.data.download:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+pythonpath = [".", "src"]

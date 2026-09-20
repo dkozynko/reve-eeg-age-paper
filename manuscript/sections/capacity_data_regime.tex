@@ -1,0 +1,82 @@
+\section{Training-Size Analysis}
+\label{sec:capacity}
+
+This exploratory analysis used three heads, three nested HBN training subsets,
+and ten seeds, for 90 runs. Each selected checkpoint was evaluated on the same
+75 MIPDB participants. The resulting 6,750 predictions are repeated evaluations
+of those participants, not independent observations.
+
+\subsection{Absolute performance and paired differences}
+Table~\ref{tab:capacity-absolute} reports absolute correlations and parameter
+counts. Table~\ref{tab:capacity-cells} gives candidate differences from the
+size-matched baseline. The richer heads improved on all ten seeds in each cell.
+Both 200-subject intervals and the MLP's 400-subject interval excluded zero;
+the other intervals included zero.
+
+\begin{table}[!htbp]
+  \centering
+  \small
+  \caption{MIPDB correlations by HBN training size. SD is computed across ten
+  seeds. The MLP has four hidden units.}
+  \label{tab:capacity-absolute}
+  \input{presentation/capacity_data_regime_absolute.tex}
+\end{table}
+
+\begin{table}[!htbp]
+  \centering
+  \small
+  \caption{Paired candidate differences at each training size. W/T/L counts
+  positive, zero, and negative seed differences. Intervals resample seeds and
+  participants; p-values are exploratory.}
+  \label{tab:capacity-cells}
+  \input{presentation/capacity_data_regime_cells.tex}
+\end{table}
+
+\subsection{Changes in the candidate advantage}
+Table~\ref{tab:capacity-contrasts} compares paired advantages between training
+sizes. For example, 800 minus 200 subtracts the candidate's advantage at 200
+subjects from its advantage at 800. All observed changes were negative. The
+one-sided sign-flip tests retained the prespecified positive-change alternative,
+which explains their large p-values; they are not tests for any change in
+either direction. Only the MLP's 800-minus-400 bootstrap interval excluded zero.
+The endpoint intervals included zero for both heads.
+
+\begin{table}[!htbp]
+  \centering
+  \small
+  \caption{Exploratory changes in the paired Pearson advantage. A negative
+  value means a smaller candidate advantage at the larger training size.
+  Holm p-values test the positive direction; SD describes seed differences.}
+  \label{tab:capacity-contrasts}
+  \input{presentation/capacity_data_regime_contrasts.tex}
+\end{table}
+
+Table~\ref{tab:capacity-transfer} shows HBN validation and MIPDB correlations for
+the selected candidate checkpoints. External scores did not select checkpoints.
+Figure~\ref{fig:capacity-absolute} shows absolute performance, and
+Figure~\ref{fig:capacity-seed-deltas} shows individual seed differences.
+The joint intervals are shown once in Figure~\ref{fig:capacity-main}.
+
+\begin{table}[!htbp]
+  \centering
+  \small
+  \caption{HBN validation and MIPDB correlations for selected candidate heads,
+  averaged over seeds.}
+  \label{tab:capacity-transfer}
+  \input{presentation/capacity_data_regime_validation_external_transfer.tex}
+\end{table}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.80\linewidth]{presentation/capacity_data_regime_absolute.pdf}
+  \caption{Absolute MIPDB correlations for each training size and head.}
+  \label{fig:capacity-absolute}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.80\linewidth]{presentation/capacity_data_regime_seed_deltas.pdf}
+  \caption{Paired Pearson differences for the rich-statistics and four-unit
+  MLP heads across seeds and HBN training sizes.}
+  \label{fig:capacity-seed-deltas}
+\end{figure}

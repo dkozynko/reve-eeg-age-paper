@@ -1,0 +1,20 @@
+\section{Code and Data Availability}
+
+The original research archive is \url{https://github.com/dkozynko/neurobench_age}.
+It contains the analysis code, executable protocols, validation tests, aggregate
+results, and manuscript build instructions. Primary, training-size, layer-wise,
+and ds006780 results are stored separately. The reproduction guide explains
+which outputs can be rebuilt from these summaries and which require the
+original data and execution artifacts.
+
+The primary protocol and selected checkpoints were locked before external
+inference, and analysis required a complete prediction inventory. Artifact
+hashes allow the retained outputs to be checked against that record; they are
+not a public timestamped preregistration. Appendix~\ref{sec:audit} describes
+these checks. The repository also retains the HBN source split manifest;
+a recovery note documents its identity check and the ds006780 metadata checks.
+Raw EEG, participant-level prediction vectors, representation caches, and
+checkpoints are not redistributed. Consequently, rebuilding the
+published tables and figures is possible from the aggregate bundle, whereas
+recomputing the participant-level metrics requires access to the original
+artifacts and datasets.

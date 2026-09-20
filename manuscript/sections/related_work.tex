@@ -1,0 +1,38 @@
+\section{Related Work}
+
+\paragraph{EEG representations and benchmarks.}
+REVE was designed to handle heterogeneous EEG recordings
+\citep{elouahidi2025reve}. NeuralBench provides a framework for comparing
+neuroimaging models across datasets and tasks \citep{banville2026neuralbench}.
+We follow its age-prediction context and training-budget conventions, but train
+only the prediction heads. MIPDB is not an official NeuralBench score.
+
+Recent studies illustrate the importance of this distinction. STST-JEPA reports
+strong age prediction with an attentive probe of frozen embeddings in its own
+training and evaluation setting \citep{segal2026ststjepa}. NeuroAtlas finds that
+model rankings vary across EEG domains \citep{kontras2026neuroatlas}, while
+comparisons of EEG feature extractors distinguish the usefulness of frozen
+features from performance after task-specific adaptation
+\citep{turgut2026feature}. Our study isolates head choice within one encoder and
+one development protocol, then tests transfer across cohorts.
+
+\paragraph{Probing and age prediction.}
+Linear probes use a deliberately restricted predictor to examine what a
+representation makes accessible \citep{alain2016probes}. Richer heads ask a
+broader question: whether additional computation can recover useful information
+from those features. Comparing them therefore requires matching data exposure
+and training conditions.
+
+EEG age-prediction studies have examined sleep, childhood development, and
+validation across datasets \citep{sun2019brainage,vandenbosch2019age,
+iyer2024growthchart,tveitstol2026robustness}. Here chronological age is a
+prediction target for studying representations, rather than a proposed clinical
+biomarker.
+
+\paragraph{Uncertainty in external evaluation.}
+External neuroimaging studies face uncertainty from both training and evaluation
+samples \citep{rosenblatt2024power}. Resampling methods can account for multiple
+sources of variation \citep{saravanan2020hierarchical}. We resample seeds and
+participants while preserving paired predictions, and separately test the
+seed-level differences on the observed cohort. Holm correction accounts for
+the three primary candidate comparisons \citep{holm1979simple}.

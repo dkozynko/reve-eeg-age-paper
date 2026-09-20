@@ -1,0 +1,34 @@
+\subsection{Secondary transfer to ds006780}
+The secondary transfer evaluated \DsRunCount{} selected runs on
+\DsSubjectCount{} participants, producing \DsPredictionCount{} predictions.
+At 200 HBN training subjects, the rich-statistics head had a mean Pearson
+difference of \DsSecondaryDelta{} from the baseline, with 95\% interval
+[\DsSecondaryCILow{},\,\DsSecondaryCIHigh{}]. At 800 training subjects, the
+difference was \DsPrimaryDelta{} and all \DsPrimaryWins{} seed differences
+were positive, but its interval also included zero:
+[\DsPrimaryCILow{},\,\DsPrimaryCIHigh{}].
+
+The 800-subject interval width was \DsPrimaryCIWidth{}, exceeding the planned
+maximum of \DsPrecisionMaxWidth{}. Thus the precision gate failed. The interval
+both leaves the direction of the population advantage uncertain and is wider
+than intended; this analysis does not establish stable superiority.
+Table~\ref{tab:ds006780-summary} and Figure~\ref{fig:ds006780} report the results.
+
+\begin{table}[tbp]
+  \centering
+  \small
+  \caption{Secondary ds006780 transfer. Pearson and seed SD summarize ten
+  training runs. Paired differences and joint intervals compare the rich head
+  with the baseline at the same training size.}
+  \label{tab:ds006780-summary}
+  \input{../results/extensions/ds006780_external_v5/ds006780_summary.tex}
+\end{table}
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.95\linewidth]{../results/extensions/ds006780_external_v5/ds006780_external.pdf}
+  \caption{Secondary ds006780 results. Left: Pearson correlations with standard
+  deviations across seeds. Right: paired differences with intervals that also
+  resample participants. Both intervals include zero.}
+  \label{fig:ds006780}
+\end{figure}

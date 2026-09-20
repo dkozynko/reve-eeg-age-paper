@@ -1,0 +1,50 @@
+\section{Discussion}
+
+All three primary candidates had higher mean correlations than the baseline,
+but every confidence interval included zero. The layer-$-2$ and rich-statistics
+heads improved on every seed. Their consistency across training runs did not
+resolve uncertainty about the external participants.
+
+The sign-flip tests and bootstrap intervals describe different sources of
+variation. The former compare training runs on the fixed MIPDB cohort; the
+latter also change which participants enter the evaluation. Small seed-level
+p-values can therefore coexist with wide intervals when the estimated
+advantage depends on the people being evaluated. Ten seeds provide ten training
+runs, not ten independently recruited external cohorts.
+
+\paragraph{The metric changes the preferred head.}
+The rich-statistics head had the highest mean Pearson correlation
+(\RichResidualPearson{}), whereas the multi-query head had the lowest MAE
+(\MultiQueryMAE{} years). Pearson measures association, not agreement in years.
+All four heads had negative external $R^2$, and their calibration slopes
+exceeded one. Thus a moderate correlation did not imply accurate or
+well-calibrated age estimates. These descriptive differences are useful for
+understanding the heads, but they were not substituted for the prespecified
+endpoint.
+
+\paragraph{More training data did not yield a larger observed advantage.}
+In the training-size analysis, the richer heads' mean advantages on MIPDB were
+smaller at 800 training subjects than at 200. The endpoint confidence intervals
+included zero, so this pattern alone does not establish that the advantage
+shrinks with more data. Additional training data may improve the baseline and
+candidate together; transfer between cohorts may also limit either predictor.
+The experiment does not isolate these explanations. Choosing a new training
+size from its MIPDB score would require a fresh external test.
+
+The layer-wise analysis likewise found higher point estimates before the final
+layer, but no interval excluded zero. The separate ds006780 transfer produced
+a different training-size pattern: the rich head was below the baseline at
+200 subjects and above it at 800. At 800, all ten differences were positive,
+but the interval again included zero and exceeded the planned width. This
+second cohort extends the comparison to another acquisition setting without
+establishing a reliable advantage.
+
+\paragraph{Implications.}
+A frozen-encoder score describes an encoder used with a particular head,
+training set, and metric. Reporting these choices, absolute prediction errors,
+and participant-aware intervals makes comparisons easier to interpret. Our
+primary, training-size, and layer-wise MIPDB analyses all reuse the same
+participants; only the ds006780 extension adds a separate cohort. A larger
+external evaluation with a protocol fixed in advance would test whether the
+observed gains persist. Evaluating another encoder would address a different
+question: how specific these findings are to REVE.
